@@ -5,7 +5,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone:  https://sbrf-mos-eureka.herokuapp.com/eureka
+      defaultZone: https://sbrf-mos-eureka.herokuapp.com/eureka
 
 spring:
   application:
