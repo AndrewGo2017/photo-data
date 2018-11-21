@@ -5,13 +5,13 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: https://sbrf-mos-eureka.herokuapp.com/eureka
+      defaultZone:  https://sbrf-mos-eureka.herokuapp.com/eureka
 
 spring:
   application:
     name: datacenter
   datasource:
-    url: jdbc:postgresql://localhost:5432/dayphoto
+    url: jdbc:postgresql://localhost:5432/day.photo
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver
@@ -24,4 +24,3 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-
