@@ -2,16 +2,16 @@ server:
   servlet:
     context-path: /context
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone:  https://sbrf-mos-eureka.herokuapp.com/eureka
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone:  https://sbrf-mos-eureka.herokuapp.com/eureka
 
 spring:
   application:
     name: datacenter
   datasource:
-    url: jdbc:postgresql://localhost:5432/day.photo
+    url: jdbc:postgresql://localhost:5432/dayphoto
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver

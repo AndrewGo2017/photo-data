@@ -19,6 +19,6 @@ public interface EntityController <T extends BaseEntity> {
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     boolean delete(@PathVariable("id") long id);
 
-    @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     List<T> getAll();
 }
