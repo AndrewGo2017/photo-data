@@ -19,6 +19,6 @@ public interface EntityController <T extends BaseEntity> {
     @DeleteMapping(value = "/{id}")
     boolean delete(@PathVariable("id") long id);
 
-    @GetMapping(value = "")
+    @GetMapping
     List<T> getAll();
 }
