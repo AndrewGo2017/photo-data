@@ -7,18 +7,18 @@ import ru.sber.photodata.model.BaseEntity;
 import java.util.List;
 
 public interface EntityController <T extends BaseEntity> {
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping
     T create( T someEntity);
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping
     T update( T someEntity);
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/{id}")
     T get(@PathVariable("id") long id);
 
-    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @DeleteMapping(value = "/{id}")
     boolean delete(@PathVariable("id") long id);
 
-    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "")
     List<T> getAll();
 }
