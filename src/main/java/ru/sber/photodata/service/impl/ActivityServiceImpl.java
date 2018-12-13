@@ -3,8 +3,10 @@ package ru.sber.photodata.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.sber.photodata.model.Activity;
+import ru.sber.photodata.repository.ActivityGroupRepository;
 import ru.sber.photodata.repository.ActivityRepository;
 import ru.sber.photodata.service.ActivityService;
+import ru.sber.photodata.to.ActivityTo;
 
 import java.util.List;
 
@@ -14,10 +16,8 @@ public class ActivityServiceImpl implements ActivityService {
     @Autowired
     private ActivityRepository activityRepository;
 
-    @Override
-    public Activity save(Activity entity) {
-        return activityRepository.save(entity);
-    }
+    @Autowired
+    private ActivityGroupRepository activityGroupRepository;
 
     @Override
     public boolean delete(long id) {
@@ -37,5 +37,18 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public List<Activity> getAllByActivityGroupId(long activityGroupId) {
         return activityRepository.getAllByActivityGroup_Id(activityGroupId);
+    }
+
+    @Override
+    public Activity save(ActivityTo activityTo) {
+
+        Activity activity = new Activity(
+                activityTo.getId(),
+                activityGroupRepository.getOne(activityTo.getActivityGroup()),
+                activityTo.getName(),
+                activityTo.isActive()
+        );
+
+        return activityRepository.save(activity);
     }
 }

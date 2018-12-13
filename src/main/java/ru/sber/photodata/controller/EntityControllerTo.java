@@ -7,13 +7,13 @@ import ru.sber.photodata.to.BaseTo;
 
 import java.util.List;
 
-public interface EntityController<Entity extends BaseEntity> {
-    @PostMapping (produces = MediaType.APPLICATION_JSON_UTF8_VALUE,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    Entity create(@RequestBody Entity someEntity);
+public interface EntityControllerTo<Entity extends BaseEntity, EntityTo extends BaseTo> {
+    @PostMapping (consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    void create(@RequestBody EntityTo someEntity);
 
-    @PutMapping( produces = MediaType.APPLICATION_JSON_UTF8_VALUE,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    Entity update(@RequestBody Entity someEntity);
-
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    void update(@RequestBody EntityTo someEntity);
+    
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
     Entity get(@PathVariable("id") long id);
 

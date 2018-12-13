@@ -5,25 +5,25 @@ import ru.sber.photodata.service.BaseService;
 
 import java.util.List;
 
-public class EntityControllerImpl<T extends BaseEntity> implements EntityController<T> {
-    private final BaseService<T> service;
+public class EntityControllerImpl<Entity extends BaseEntity> implements EntityController<Entity> {
+    private final BaseService<Entity> service;
 
-    public EntityControllerImpl(BaseService<T> service){
+    public EntityControllerImpl(BaseService<Entity> service){
         this.service = service;
     }
 
     @Override
-    public T create(T someEntity) {
+    public Entity create(Entity someEntity) {
         return service.save(someEntity);
     }
 
     @Override
-    public T update(T someEntity) {
+    public Entity update(Entity someEntity) {
         return service.save(someEntity);
     }
 
     @Override
-    public T get(long id) {
+    public Entity get(long id) {
         return service.get(id);
     }
 
@@ -33,7 +33,7 @@ public class EntityControllerImpl<T extends BaseEntity> implements EntityControl
     }
 
     @Override
-    public List<T> getAll() {
+    public List<Entity> getAll() {
         return service.getAll();
     }
 }

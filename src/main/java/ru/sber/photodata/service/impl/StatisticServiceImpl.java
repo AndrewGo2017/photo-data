@@ -3,8 +3,11 @@ package ru.sber.photodata.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.sber.photodata.model.Statistic;
+import ru.sber.photodata.repository.ActivityRepository;
 import ru.sber.photodata.repository.StatisticRepository;
+import ru.sber.photodata.repository.UserRepository;
 import ru.sber.photodata.service.StatisticService;
+import ru.sber.photodata.to.StatisticTo;
 import ru.sber.photodata.to.UserStatisticTimeTo;
 
 import java.time.LocalDate;
@@ -17,10 +20,11 @@ public class StatisticServiceImpl implements StatisticService {
     @Autowired
     private StatisticRepository statisticRepository;
 
-    @Override
-    public Statistic save(Statistic entity) {
-        return statisticRepository.save(entity);
-    }
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ActivityRepository activityRepository;
 
     @Override
     public boolean delete(long id) {
@@ -50,5 +54,18 @@ public class StatisticServiceImpl implements StatisticService {
     @Override
     public List<UserStatisticTimeTo> getAllUserTotalDayTimeWithActivityDetails(LocalDate from, LocalDate to) {
         return statisticRepository.getAllUserTotalDayTimeWithActivityDetails(from, to);
+    }
+
+    @Override
+    public Statistic save(StatisticTo entity) {
+        Statistic statistic = new Statistic(
+                entity.getId(),
+                userRepository.getOne(entity.getUser()),
+                activityRepository.getOne(entity.getActivity()),
+                entity.getDate(),
+                entity.getTime()
+        );
+
+        return statisticRepository.save(statistic);
     }
 }
