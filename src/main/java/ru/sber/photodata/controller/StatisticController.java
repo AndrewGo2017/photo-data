@@ -9,6 +9,7 @@ import ru.sber.photodata.service.StatisticService;
 import ru.sber.photodata.to.UserStatisticTimeTo;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -34,5 +35,11 @@ public class StatisticController extends EntityControllerImpl<Statistic> {
             @PathVariable("from") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate from,
             @PathVariable("to") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate to){
         return statisticService.getAllUserTotalDayTime(from, to);
+    }
+
+    @GetMapping("/total-day-time/{userId}")
+    public @DateTimeFormat(pattern = "HH:ss:mm") LocalTime getTotalDayTime(
+            @PathVariable("userId") Long userId){
+        return statisticService.getTotalDayTime(userId);
     }
 }

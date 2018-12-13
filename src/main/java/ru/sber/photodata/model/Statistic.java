@@ -1,5 +1,6 @@
 package ru.sber.photodata.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,9 +31,11 @@ public class Statistic extends BaseEntity {
     private Activity activity;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
 
     @DateTimeFormat(pattern = "HH:mm:ss")
+    @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime time;
 
     public Statistic(Long id, User user, Activity activity, LocalDate date, LocalTime time) {
