@@ -14,4 +14,6 @@ public interface StatisticService extends BaseServiceTo<Statistic, StatisticTo> 
     List<UserStatisticTimeTo> getAllUserTotalDayTime(LocalDate from, LocalDate to);
 
     List<UserStatisticTimeTo> getAllUserTotalDayTimeWithActivityDetails(LocalDate from, LocalDate to);
+
+    void saveAll(List<StatisticTo> statisticToList);
 }

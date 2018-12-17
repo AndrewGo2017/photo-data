@@ -45,4 +45,9 @@ public class StatisticController extends EntityControllerToImpl<Statistic, Stati
             @PathVariable("userId") Long userId){
         return statisticService.getTotalDayTime(userId);
     }
+
+    @PostMapping(value = "/list", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void saveAll(@RequestBody List<StatisticTo> statisticToList){
+        statisticService.saveAll(statisticToList);
+    }
 }

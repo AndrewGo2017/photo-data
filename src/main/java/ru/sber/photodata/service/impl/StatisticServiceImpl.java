@@ -12,6 +12,7 @@ import ru.sber.photodata.to.UserStatisticTimeTo;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -67,5 +68,24 @@ public class StatisticServiceImpl implements StatisticService {
         );
 
         return statisticRepository.save(statistic);
+    }
+
+    @Override
+    public void saveAll(List<StatisticTo> statisticToList) {
+        List<Statistic> statisticList = new ArrayList<>();
+        for (StatisticTo statisticTo : statisticToList){
+            Statistic statistic = new Statistic(
+                    statisticTo.getId(),
+                    userRepository.getOne(statisticTo.getUser()),
+                    activityRepository.getOne(statisticTo.getActivity()),
+                    statisticTo.getDate(),
+                    statisticTo.getTime()
+            );
+            statisticList.add(statistic);
+        }
+
+        if (statisticList.size() > 0){
+            statisticRepository.saveAll(statisticList);
+        }
     }
 }
